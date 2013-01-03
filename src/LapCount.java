@@ -272,7 +272,7 @@ public class LapCount extends javax.swing.JFrame {
 			while (running && refresh) {
 				try {
 					if(runOnce) { refresh = false; runOnce = false; }
-					jLabelRefreshing.setText("refresh");
+					jLabelRefreshing.setText("refresh....");
 					csvContent = getCsvContent();
 						
 					connectDB();
@@ -283,7 +283,7 @@ public class LapCount extends javax.swing.JFrame {
 					int i = 0;
 					while (i < csvContent.size()) {
 						splitString = csvContent.get(i).split(";");
-						stmt.executeUpdate("insert into ZEIT (STARTNUMMER, ZEIT) values (" + splitString[3] + ", '" + splitString[2] + "')");
+						stmt.executeUpdate("insert into ZEIT (ZEIT, STARTNUMMER) values ('" + splitString[3] + "', " + splitString[2] + ")");
 						i++;
 					}
 					
